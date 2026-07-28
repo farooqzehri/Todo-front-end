@@ -76,7 +76,7 @@ const getAllTodo = () => {
             render.innerHTML = allItems.map(item => `
                 <li class="todo-item">
                     <div class="todo-content">
-                    ${getTodayFormatted()}
+                   
                     ${getTodayFormattedWithTime()}
                         <h3>${item.title}</h3>
                         <p>${item.description}</p>
