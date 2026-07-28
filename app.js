@@ -17,9 +17,35 @@ function getTodayFormatted() {
   return `${day} ${month} ${year}`;
 }
 
-// Example usage:
-console.log(); // Output: 29 July 2026
+function getTodayFormattedWithTime() {
+  const now = new Date();
 
+  // Date components
+  const day = now.getDate();
+  const year = now.getFullYear();
+  
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  const month = monthNames[now.getMonth()];
+
+  // Time components (Local Time)
+  let hours = now.getHours();
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+
+  // Convert to 12-hour format
+  hours = hours % 12;
+  hours = hours ? hours : 12; // 0 becomes 12
+
+  return `${day} ${month} ${year}, ${hours}:${minutes}:${seconds} ${ampm}`;
+}
+
+// Example usage:
+console.log(); 
+// Output: "29 July 2026, 2:32:02 AM"
 const getAllTodo = () => {
     render.innerHTML = `
       <div class="state-message">
@@ -51,6 +77,7 @@ const getAllTodo = () => {
                 <li class="todo-item">
                     <div class="todo-content">
                     ${getTodayFormatted()}
+                    ${getTodayFormattedWithTime()}
                         <h3>${item.title}</h3>
                         <p>${item.description}</p>
                     </div>
