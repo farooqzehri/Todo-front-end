@@ -1,6 +1,25 @@
 const API = "https://express-crud-swart.vercel.app/api/v1/todo";
 const render = document.querySelector('.render');
 
+function getTodayFormatted() {
+  const today = new Date();
+  
+  const day = today.getDate();
+  const year = today.getFullYear();
+  
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  
+  const month = monthNames[today.getMonth()];
+
+  return `${day} ${month} ${year}`;
+}
+
+// Example usage:
+console.log(); // Output: 29 July 2026
+
 const getAllTodo = () => {
     render.innerHTML = `
       <div class="state-message">
@@ -31,6 +50,7 @@ const getAllTodo = () => {
             render.innerHTML = allItems.map(item => `
                 <li class="todo-item">
                     <div class="todo-content">
+                    ${getTodayFormatted()}
                         <h3>${item.title}</h3>
                         <p>${item.description}</p>
                     </div>
